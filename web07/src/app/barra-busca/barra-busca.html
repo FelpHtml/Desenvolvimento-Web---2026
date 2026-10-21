@@ -5,11 +5,12 @@
     type="text"
     placeholder="Digite sua pesquisa"
     [(ngModel)]="pesquisa"
+    (ngModelChange)="salvarPesquisa()"
   >
 
   <button (click)="buscar()">
     Buscar
   </button>
 
-  <p> resultado </p>
+  <p>{{ resultado }}</p>
 </div>

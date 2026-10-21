@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,10 +8,23 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './barra-busca.html',
   styleUrl: './barra-busca.css'
 })
-export class BarraBusca {
+export class BarraBusca implements OnInit {
 
   pesquisa: string = '';
   resultado: string = '';
+
+  ngOnInit() {
+    if (typeof localStorage !== 'undefined') {
+      this.pesquisa = localStorage.getItem('pesquisa') || '';
+    }
+  }
+
+  salvarPesquisa() {
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('pesquisa', this.pesquisa);
+    console.log('Pesquisa salva:', this.pesquisa);
+  }
+}
 
   buscar() {
     if (this.pesquisa.trim() !== '') {
